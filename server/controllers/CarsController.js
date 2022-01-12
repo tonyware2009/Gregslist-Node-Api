@@ -11,8 +11,8 @@ export class CarsController extends BaseController {
       .get('/:id', this.getById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
-      .delete('/:id', this.remove)
       .put('/:id', this.edit)
+      .delete('/:id', this.remove)
   }
 
   async getAll(req, res, next) {
@@ -43,15 +43,6 @@ export class CarsController extends BaseController {
     }
   }
 
-  async remove(req, res, next) {
-    try {
-      const deletedCar = await carsService.remove(req.params.id, req.userInfo.id)
-      res.send(deletedCar)
-    } catch (error) {
-      next(error)
-    }
-  }
-
   async edit(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
@@ -61,4 +52,13 @@ export class CarsController extends BaseController {
       next(error)
     }
   }
+  async remove(req, res, next) {
+    try {
+      const deletedCar = await carsService.remove(req.params.id, req.userInfo.id)
+      res.send(deletedCar)
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }

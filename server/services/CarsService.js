@@ -9,7 +9,7 @@ class CarsService {
 
   async getById(carId) {
 
-    const foundCar = await dbContext.Cars.finById(carId).populate('creator', 'name picture')
+    const foundCar = await dbContext.Cars.findById(carId).populate('creator', 'name picture')
     if (!foundCar) {
       throw new BadRequest('unable to find car')
     }

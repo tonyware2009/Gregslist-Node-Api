@@ -1,4 +1,4 @@
-import { mongoose } from "mongoose"
+import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 export const CarSchema = new Schema(
@@ -8,10 +8,10 @@ export const CarSchema = new Schema(
     model: { type: String, required: true },
     price: { type: Number, required: true },
     color: { type: String, required: true },
-    description: { String, required: true },
+    description: { type: String, required: true },
     imgUrl: { type: String, required: true, default: 'https://placehold.it/300x300' },
     creatorId: {
-      type: schema.type.ObjectId, ref:
+      type: Schema.Types.ObjectId, ref:
         'Profile', required: true
     }
 

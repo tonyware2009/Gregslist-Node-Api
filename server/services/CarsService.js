@@ -1,5 +1,5 @@
 import { BadRequest } from "@bcwdev/auth0provider/lib/Errors";
-
+import { dbContext } from '../db/DbContext'
 class CarsService {
 
   async getAll() {
@@ -9,7 +9,7 @@ class CarsService {
 
   async getById(carId) {
 
-    const foundCar = await dbContext.cars.finById(carId).populate('creator', 'name picture')
+    const foundCar = await dbContext.Cars.finById(carId).populate('creator', 'name picture')
     if (!foundCar) {
       throw new BadRequest('unable to find car')
     }
